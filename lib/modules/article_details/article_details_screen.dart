@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:news_app/modules/article-details/widgets/action_icon_button_widget.dart';
-import 'package:news_app/modules/article-details/widgets/drop_cap_text_widget.dart';
-import 'package:news_app/modules/article-details/widgets/pull_quote_block_widget.dart';
+import 'package:news_app/modules/article_details/widgets/action_icon_button_widget.dart';
+import 'package:news_app/modules/article_details/widgets/drop_cap_text_widget.dart';
+import 'package:news_app/modules/article_details/widgets/pull_quote_block_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:news_app/app/core/constants/app_sizes.dart';
 import 'package:news_app/app/core/themes/app_colors.dart';
 import 'package:news_app/app/core/themes/app_text_size.dart';
 import 'package:news_app/app/core/themes/app_textstyles.dart';
 import 'package:news_app/app/core/widgets/smart_network_image.dart';
-import 'package:news_app/modules/article-details/controller/article_details_controller.dart';
+import 'package:news_app/modules/article_details/controller/article_details_controller.dart';
 
 class ArticleDetailsScreen extends GetView<ArticleDetailsController> {
   const ArticleDetailsScreen({super.key});

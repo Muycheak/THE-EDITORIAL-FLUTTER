@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:news_app/modules/article-details/controller/article_details_controller.dart';
+import 'package:news_app/modules/article_details/controller/article_details_controller.dart';
 
 class ArticleDetailsBinding extends Bindings {
   @override

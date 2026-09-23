@@ -175,19 +175,23 @@ class SearchScreen extends GetView<search_controller.SearchController> {
                   );
                 }
 
-                return ListView.separated(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: controller.articles.length,
-                  itemBuilder: (context, index) {
-                    final Article article = controller.articles[index];
-                    return AppNewsListWidget(article: article);
-                  },
-                  separatorBuilder: (context, index) {
-                    return const SizedBox(
-                      height: AppSizes.horizontalSpaceXLarge,
-                    );
-                  },
+                return Expanded(
+                  child: ListView.separated(
+                    controller: controller.scrollController,
+                    itemCount: controller.articles.length + (controller.isLoading.value ? 1 : 0),
+                    padding: const EdgeInsets.only(bottom: AppSizes.verticalPadding),
+                    shrinkWrap: true,
+                    physics: const ClampingScrollPhysics(),
+                    itemBuilder: (context, index) {
+                      final Article article = controller.articles[index];
+                      return AppNewsListWidget(article: article);
+                    },
+                    separatorBuilder: (context, index) {
+                      return const SizedBox(
+                        height: AppSizes.horizontalSpaceXLarge,
+                      );
+                    },
+                  ),
                 );
               }
             }),
