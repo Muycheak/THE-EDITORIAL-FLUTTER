@@ -25,6 +25,10 @@ class TrendingController extends GetxController {
       articles.assignAll(arguments['articles'] ?? []);
       selectCategories = arguments['category'] ?? "";
     }
+    if (articles.isEmpty && selectCategories.isNotEmpty) {
+      page = 1;
+      loadMore();
+    }
 
     scrollController.addListener(() {
       if (scrollController.position.pixels >=
@@ -51,14 +55,28 @@ class TrendingController extends GetxController {
 
       String today = '${dateTime.year}-${dateTime.month}-${dateTime.day}';
 
-      final RepositoryResult repositoryResult = await _newsRepositories
-          .getTopHeadlinesRepo(
-            category: selectCategories.toLowerCase(),
-            from: today,
-            to: today,
-            page: page,
-            perPage: perPage,
-          );
+      final RepositoryResult repositoryResult;
+      if (selectCategories.toLowerCase() == 'lifestyle' ||
+          selectCategories.toLowerCase() == 'politics') {
+        repositoryResult = await _newsRepositories.getEverythingRepo(
+          query: selectCategories.toLowerCase(),
+          from: today,
+          to: today,
+          page: page,
+          perPage: perPage,
+        );
+      } else {
+        final category = selectCategories.toLowerCase() == 'business & finance'
+            ? 'business'
+            : selectCategories.toLowerCase();
+        repositoryResult = await _newsRepositories.getTopHeadlinesRepo(
+          category: category,
+          from: today,
+          to: today,
+          page: page,
+          perPage: perPage,
+        );
+      }
       if (repositoryResult.isError) {
         errorMessage.value = repositoryResult.message;
       } else {

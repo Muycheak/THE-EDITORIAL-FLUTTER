@@ -3,6 +3,7 @@ import 'package:shimmer/shimmer.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/app/data/models/article.dart';
 import 'package:news_app/app/core/constants/app_sizes.dart';
+import 'package:news_app/app/core/constants/app_enums.dart';
 import 'package:news_app/app/core/widgets/app_news_list_widget.dart';
 import 'package:news_app/modules/home/widgets/home_shimmer_widget.dart';
 import 'package:news_app/modules/search/widgets/category_card_widget.dart';
@@ -11,6 +12,13 @@ import 'package:news_app/modules/search/controller/search_controller.dart'
 
 class SearchScreen extends GetView<search_controller.SearchController> {
   const SearchScreen({super.key});
+
+  void _openCategory(String category) {
+    Get.toNamed(
+      AppScreens.trending.route,
+      arguments: {'category': category, 'articles': <Article>[]},
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +86,7 @@ class SearchScreen extends GetView<search_controller.SearchController> {
                       ),
                       const SizedBox(height: 20),
                       // Business & Finance
-                      const CategoryCardWidget(
+                      CategoryCardWidget(
                         title: 'Business & Finance',
                         height: 180,
                         width: double.infinity,
@@ -92,17 +100,19 @@ class SearchScreen extends GetView<search_controller.SearchController> {
                         // Using a placeholder image for now
                         imageUrl:
                             'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=600&auto=format&fit=crop',
+                        onTap: () => _openCategory('Business & Finance'),
                       ),
                       const SizedBox(height: 16),
                       // Grid Row 1
                       Row(
-                        children: const [
+                        children: [
                           Expanded(
                             child: CategoryCardWidget(
                               title: 'TECHNOLOGY',
                               height: 180,
                               imageUrl:
                                   'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=400&auto=format&fit=crop',
+                              onTap: () => _openCategory('Technology'),
                             ),
                           ),
                           SizedBox(width: 16),
@@ -112,6 +122,7 @@ class SearchScreen extends GetView<search_controller.SearchController> {
                               height: 180,
                               imageUrl:
                                   'https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=400&auto=format&fit=crop',
+                              onTap: () => _openCategory('Science'),
                             ),
                           ),
                         ],
@@ -119,13 +130,14 @@ class SearchScreen extends GetView<search_controller.SearchController> {
                       const SizedBox(height: 16),
                       // Grid Row 2
                       Row(
-                        children: const [
+                        children: [
                           Expanded(
                             child: CategoryCardWidget(
                               title: 'LIFESTYLE',
                               height: 180,
                               imageUrl:
                                   'https://images.unsplash.com/photo-1445205170230-053b83016050?q=80&w=400&auto=format&fit=crop',
+                              onTap: () => _openCategory('Lifestyle'),
                             ),
                           ),
                           SizedBox(width: 16),
@@ -136,6 +148,7 @@ class SearchScreen extends GetView<search_controller.SearchController> {
                               width: double.infinity,
                               imageUrl:
                                   'https://images.unsplash.com/photo-1523292562811-8fa7962a78c8?q=80&w=400&auto=format&fit=crop',
+                              onTap: () => _openCategory('Politics'),
                             ),
                           ),
                         ],
@@ -183,6 +196,12 @@ class SearchScreen extends GetView<search_controller.SearchController> {
                     shrinkWrap: true,
                     physics: const ClampingScrollPhysics(),
                     itemBuilder: (context, index) {
+                      if (index == controller.articles.length) {
+                        return const Padding(
+                          padding: EdgeInsets.all(16),
+                          child: Center(child: CircularProgressIndicator()),
+                        );
+                      }
                       final Article article = controller.articles[index];
                       return AppNewsListWidget(article: article);
                     },

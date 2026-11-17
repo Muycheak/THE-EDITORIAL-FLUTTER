@@ -8,6 +8,7 @@ class CategoryCardWidget extends StatelessWidget {
   final TextStyle? titleStyle;
   final Alignment alignment;
   final String imageUrl;
+  final VoidCallback? onTap;
 
   const CategoryCardWidget({
     super.key,
@@ -17,37 +18,46 @@ class CategoryCardWidget extends StatelessWidget {
     this.titleStyle,
     this.alignment = Alignment.bottomLeft,
     required this.imageUrl,
+    this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: height,
-      width: width,
-      decoration: BoxDecoration(
-        color: Colors.grey.shade300,
-        borderRadius: BorderRadius.circular(12),
-        image: DecorationImage(
-          image: NetworkImage(imageUrl),
-          fit: BoxFit.cover,
-          colorFilter: ColorFilter.mode(
-            AppColor.primaryColor.withValues(alpha: 0.4),
-            BlendMode.darken,
+    return Material(
+      color: Colors.transparent,
+      borderRadius: BorderRadius.circular(12),
+      clipBehavior: Clip.antiAlias,
+      child: InkWell(
+        onTap: onTap,
+        child: Container(
+          height: height,
+          width: width,
+          decoration: BoxDecoration(
+            color: Colors.grey.shade300,
+            borderRadius: BorderRadius.circular(12),
+            image: DecorationImage(
+              image: NetworkImage(imageUrl),
+              fit: BoxFit.cover,
+              colorFilter: ColorFilter.mode(
+                AppColor.primaryColor.withValues(alpha: 0.4),
+                BlendMode.darken,
+              ),
+            ),
+          ),
+          padding: const EdgeInsets.all(20),
+          alignment: alignment,
+          child: Text(
+            title,
+            style:
+                titleStyle ??
+                const TextStyle(
+                  color: Colors.white,
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 1.2,
+                ),
           ),
         ),
-      ),
-      padding: const EdgeInsets.all(20),
-      alignment: alignment,
-      child: Text(
-        title,
-        style:
-            titleStyle ??
-            const TextStyle(
-              color: Colors.white,
-              fontSize: 15,
-              fontWeight: FontWeight.bold,
-              letterSpacing: 1.2,
-            ),
       ),
     );
   }

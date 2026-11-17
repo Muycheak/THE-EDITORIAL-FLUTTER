@@ -18,12 +18,12 @@ class HomeShimmerWidget extends StatelessWidget {
           spacing: AppSizes.verticalSpaceXXLarge,
           children: [
             // ── Breaking News shimmer ────────────────────────────────────────
-            const _BreakingNewsShimmer(),
+            const BreakingNewsShimmer(),
 
             const Divider(),
 
             // ── Trending Stories shimmer ─────────────────────────────────────
-            const _TrendingStoriesShimmer(),
+            const TrendingStoriesShimmer(),
           ],
         ),
       ),
@@ -34,8 +34,8 @@ class HomeShimmerWidget extends StatelessWidget {
 // ---------------------------------------------------------------------------
 // Breaking News skeleton
 // ---------------------------------------------------------------------------
-class _BreakingNewsShimmer extends StatelessWidget {
-  const _BreakingNewsShimmer();
+class BreakingNewsShimmer extends StatelessWidget {
+  const BreakingNewsShimmer({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -66,8 +66,8 @@ class _BreakingNewsShimmer extends StatelessWidget {
 // ---------------------------------------------------------------------------
 // Trending Stories skeleton
 // ---------------------------------------------------------------------------
-class _TrendingStoriesShimmer extends StatelessWidget {
-  const _TrendingStoriesShimmer();
+class TrendingStoriesShimmer extends StatelessWidget {
+  const TrendingStoriesShimmer({super.key});
 
   @override
   Widget build(BuildContext context) {
