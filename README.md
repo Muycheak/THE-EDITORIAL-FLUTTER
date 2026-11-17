@@ -1,17 +1,32 @@
-# news_app
+# The Editorial
 
-A new Flutter project.
+![The Editorial app poster](assets/images/poster.jpeg)
 
-## Getting Started
+An editorial-style Flutter news reader focused on a calmer, more engaging way
+to explore the day's stories.
 
-This project is a starting point for a Flutter application.
+## Highlights
 
-A few resources to get you started if this is your first Flutter project:
+- A featured story and latest-news feed
+- Topic filters for World, Business, Technology, and Culture
+- Story previews with save-for-later reading lists
+- Responsive article imagery with graceful offline fallbacks
+- A custom Editorial poster included in the repository
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+## Run locally
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1. Install [Flutter](https://docs.flutter.dev/get-started/install).
+2. Fetch dependencies:
+
+   ```sh
+   flutter pub get
+   ```
+
+3. Start the app:
+
+   ```sh
+   flutter run
+   ```
+
+Stories are sample content in this UI demo. The repository also contains a
+NewsAPI data layer that can be connected to a configured API account.
