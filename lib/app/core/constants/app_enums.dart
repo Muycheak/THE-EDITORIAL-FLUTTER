@@ -9,3 +9,12 @@ enum DioTryAgainMessage {
 }
 
 enum NetworkStatus { online, offline, poor }
+
+enum AppScreens {
+  main('/main'),
+  articleDetails('/article_details'),
+  trending('/trending');
+
+  final String route;
+  const AppScreens(this.route);
+}

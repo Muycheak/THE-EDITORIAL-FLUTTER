@@ -22,21 +22,28 @@ class _NewsAPIClient implements NewsAPIClient {
   @override
   Future<ApiListResponse<Article>> getEverythingAPI(
     String q,
-    String from,
-    String sources,
-    String country,
-    String sortBy,
-    String language,
+    String? from,
+    String? to,
+    String? sources,
+    String? country,
+    String? sortBy,
+    String? language,
+    int? pageSize,
+    int? page,
   ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'q': q,
       r'from': from,
+      r'to': to,
       r'sources': sources,
       r'country': country,
       r'sortBy': sortBy,
       r'language': language,
+      r'pageSize': pageSize,
+      r'page': page,
     };
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<ApiListResponse<Article>>(
@@ -62,22 +69,29 @@ class _NewsAPIClient implements NewsAPIClient {
 
   @override
   Future<ApiListResponse<Article>> getTopHeadlinesAPI(
-    String q,
-    String from,
-    String sources,
-    String country,
-    String sortBy,
-    String language,
+    String? category,
+    String? from,
+    String? to,
+    String? sources,
+    String? country,
+    String? sortBy,
+    String? language,
+    int? pageSize,
+    int? page,
   ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
-      r'q': q,
+      r'category': category,
       r'from': from,
+      r'to': to,
       r'sources': sources,
       r'country': country,
       r'sortBy': sortBy,
       r'language': language,
+      r'pageSize': pageSize,
+      r'page': page,
     };
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<ApiListResponse<Article>>(
