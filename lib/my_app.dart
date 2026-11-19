@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'News App',
+      title: 'THE EDITORIAL',
       debugShowCheckedModeBanner: false,
       theme: AppThemeService().theme,
       color: Colors.transparent,
